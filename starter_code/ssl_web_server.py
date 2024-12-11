@@ -69,6 +69,7 @@ def setup_connection(
 def handle_request(s: socket.socket | ssl.SSLSocket ) -> bytes:
     # TODO read client request and responds with HTML_RESPONSE
     # TODO close connection after responding
+    s.recv(1024)
     s.sendall(HTML_RESPONSE)
     s.close()
     pass
