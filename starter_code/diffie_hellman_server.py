@@ -32,7 +32,7 @@ def dh_exchange_server(server_address: str, server_port: int) -> Tuple[int, int,
     # TODO: Exchange messages with the client
     bob_message = {}
     bob_message['public_key'] = bob_pk
-    sock.sendto(json.dumps(bob_message).encode(), addr)
+    conn.send(json.dumps(bob_message).encode())
     
     alice_info = conn.recv(MESSAGE_SIZE).decode()
     alice_pk = json.loads(alice_info)["public_key"]

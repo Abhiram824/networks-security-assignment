@@ -37,9 +37,9 @@ def dh_exchange_client(server_address: str, server_port: int) -> Tuple[int, int,
     alice_message = {}
     alice_message['public_key'] = alice_pk
     # TODO: Exhange messages with the server
-    sock.sendall(json.dumps(alice_message).encode())
     bob_info = sock.recv(MESSAGE_SIZE).decode()
     bob_info = json.loads(bob_info)
+    sock.sendall(json.dumps(alice_message).encode())
     # TODO: Calculate the secret using your own secret key and server message
     shared_secret = (bob_info['public_key'] ** alice_secret_key) % prime_modulus
     # TODO: Return the base number, the modulus, the private key, and the shared secret
